@@ -55,7 +55,13 @@ https://templatemo.com/tm-503-newline
             <li class="selected">
               <div class="heading">
                 <h1>HARINFOOD</h1>
-                <span><b>Selamat datang di halaman HARINFOOD </b></span>
+                <span>
+                  <b> <p style="color:#ffff;"><b>Tanggal/Waktu:</b> <span  style="color:#f07d28; font-size :15px" id="tanggalwaktu" ></span></p></b>
+                        <script>
+                            var dt = new           Date();
+document.getElementById("tanggalwaktu").innerHTML = dt.toLocaleString();
+</script>
+<b>Selamat datang di halaman HARINFOOD </b></span>
               </div>
               <div class="cd-half-width second-slide">
                 <div class="container">
