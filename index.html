@@ -1,329 +1,245 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Newline Template</title>
-<!--
-Newline Template
-https://templatemo.com/tm-503-newline
--->
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog HARINFOOD POS Lite</title>
+    <link rel="manifest" href="manifest.json?v=81">
+    <link rel="stylesheet" href="style.css?v=81">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+         <!-- <script>
+        window.location.href = "https://harinfood.github.io/libur/";
+      </script> -->
+</head>
+<body>
 
-        <link rel="stylesheet" href="bootstrap.min.css">
-        <link rel="stylesheet" href="bootstrap-theme.min.css">
-        <link rel="stylesheet" href="fontAwesome.css">
-        <link rel="stylesheet" href="templatemo-style.css">
+<div id="global-header">
+  <div class="header-inner">
+    <h1 class="section-title">DAFTAR MENU HARINFOOD</h1>
+    <div id="kasir-header-bar" class="kasir-header-bar"></div>
+  </div>
+</div>
 
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <!-- Popup Login -->
+    <div id="login-popup" class="popup-overlay" style="display: flex;">
+        <div class="popup-content">
+            <div class="login-header" style="display:flex;align-items:center;justify-content:center;gap:12px;">
+                <h2 class="login-title" style="margin:0;">KATALOG HARINFOOD</h2>
+                <!-- Tombol ikon untuk menuju login kasir -->
+                <button id="btn-kasir-icon" title="Login Kasir" style="background:transparent;border:none;color:inherit;font-size:1.4em;cursor:pointer;"><i class="fas fa-user"></i></button>
+            </div>
 
-        <script src="modernizr-2.8.3-respond-1.4.2.min.js"></script>
-<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="883b64b7-183d-4f8e-90ce-b909adf98fa0";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<!--
-    <script type="text/javascript">
-        window.location.href = "https://lummoshop.com/harinfood";
-    </script>
--->
-    </head>
-    <body>
+            <!-- Form Pelanggan ditampilkan langsung sebagai default -->
+            <form id="form-pelanggan" style="display: flex; flex-direction: column;">
+                <label for="nama-pelanggan-login">Nama Anda:</label>
+                <input type="text" id="nama-pelanggan-login" autofocus required>
+                <label for="alamat-pelanggan-login">Alamat Anda:</label>
+                <input type="text" id="alamat-pelanggan-login" required>
+                <button type="submit" class="submit-login-btn">Lanjutkan</button>
+            </form>
 
-        <div class="overlay"></div>
-        <section class="top-part">
-         <!-- <video controls autoplay loop>
-            <source src="videos/video.mp4" type="video/mp4">
-            <source src="videos/video.ogg" type="video/ogg">
-          Your browser does not support the video tag.
-          </video>-->
-        </section>
+            <!-- Form Kasir tetap ada namun tersembunyi, akan dibuka lewat ikon user -->
+            <form id="form-kasir" style="display: none;">
+                <label for="nama-kasir-login">Nama Kasir:</label>
+                <input type="text" id="nama-kasir-login" required>
+                <label for="password-kasir-login">Password:</label>
+                <input type="password" id="password-kasir-login" required>
+                <button type="submit" class="submit-login-btn">Login Kasir</button>
+            </form>
+            <div>
+              <h6>Silahkan isi formulir di atas untuk melihat katalog dan anda bisa memesannya</h6>
+            </div>
+        </div>
         
-        <section class="cd-hero">
+    </div>
 
-          <div class="cd-slider-nav">
-            <nav>
-              <span class="cd-marker item-1"></span>
-              <ul>
-                <li class="selected"><a href="#0"><div class="image-icon"><img src="home-icon.png"></div><h6>Welcome</h6></a></li>
-                <li><a href="#0"><div class="image-icon"><img src="about-icon.png"></div><h6>About Us</h6></a></li>
-                <li><a href="#0"><div class="image-icon"><img src="featured-icon.png"></div><h6>Featured</h6></a></li>
-                <li><a href="#0"><div class="image-icon"><img src="projects-icon.png"></div><h6>Projects</h6></a></li>
-                <li><a href="#0"><div class="image-icon"><b><img src="contact-icon.png"></b></div><h6>BELANJA</h6></a></li>
-              </ul>
-            </nav> 
-          </div> <!-- .cd-slider-nav -->
+    <!-- Modal Nama Pemesan -->
+    <div id="namaPemesanModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); align-items:center; justify-content:center;">
+        <div style="background:#222; padding:2em 2em 1em 2em; border-radius:12px; box-shadow:0 8px 40px #000; max-width:90vw;">
+            <h2>Isi Nama Anda</h2>
+            <input type="text" id="inputNamaPemesan" style="width:100%;padding:0.6em;font-size:1.1em;">
+            <button id="btnSimpanNamaPemesan" style="margin-top:1em; padding:0.7em 2em; border-radius:8px; background:#00f0ff; color:#222; border:none; font-weight:bold;">Simpan</button>
+        </div>
+    </div>
 
-          <ul class="cd-hero-slider">
+    <!-- Popup Pilihan Cetak -->
+    <div id="print-options-popup" class="popup-overlay" style="display: none;">
+        <div class="popup-content">
+            <h2>Pilih Metode Pembayaran Cetak</h2>
+            <div class="button-group">
+                <button id="btn-print-tunai" class="btn-payment btn-tunai"><i class="fas fa-money-bill-wave"></i> Tunai</button>
+                <button id="btn-print-qris" class="btn-payment btn-qris"><i class="fas fa-qrcode"></i> QRIS</button>
+            </div>
+            <button id="close-print-popup" class="close-popup-btn">&times;</button>
+        </div>
+    </div>
 
-            <li class="selected">
-              <div class="heading">
-                <h1>HARINFOOD</h1>
-                <span>
-                  <b> <p style="color:#ffff;"><b>Tanggal/Waktu:</b> <span  style="color:#f07d28; font-size :15px" id="tanggalwaktu" ></span></p></b>
-                        <script>
-                            var dt = new           Date();
-document.getElementById("tanggalwaktu").innerHTML = dt.toLocaleString();
-</script>
-<b>Selamat datang di aplikasi HARINFOOD </b></span>
-              </div>
-              <div class="cd-half-width second-slide">
-                <div class="container">
-         <div class="row">
-                    <div class="col-md-12">
-                      <div class="content second-content">
-                        <div class="row">
-                          <div class="col-md-7 left-image">
-                            <img style="height:150px; width:150px;"src="111.jpg">
-                          </div>
-                          <div class="col-md-5"><!--<center> <a href="https://lummoshop.com/harinfood"><button style="background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
-
-          border: 1px solid #00c9ff;
-
-          border-radius:18px;
-          color: #464646;
-          font-weight: bold;
-          text-align: center;
-          vertical-align: middle;
-          text-decoration: none;
-          display: inline-block;
-          height: 55px;
-          width : 70%;"><b>BELANJA&nbsp;<img style="width:25px ; height:25px;" src="keranjang.png"></b></button></a></center>-->
-                            <div class="right-about-text">
-                              <h4>Aplikasi HARINFOOD adalah aplikasi kedai online </h4>
-                              <p>kami telah membuat aplikasi kedai online HARINFOOD supaya anda lebih mudah berbelanja dan melihat menu kita secara online dan aplikasi ini juga bisa di pakai sebagai qr reader sekaligus sebagai halaman portofolio HARINFOOD dengan interface yang user friendly yang mudah di pakai, sehingga anda mudah dalam memesan menu kami .</p>
-                              
-                              
-                              <!--<div class="primary-button">
-                                <a href="harinfood.net/login.html">LOGIN WIFI</a>
-                              </div>-->
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-7">
-                            <div class="left-about-text">
-                              <h4>Dimana jaringan wifi harinfood tersedia?</h4>
-
-                    <p>cakupan jaringan wifi yang tersedia untuk saat ini hanya di sekitaran </br>*kedai HARINFOOD </br>*rumah bapak mulyadi tukang jahit ender rakit
-                      </br>*rumah ibu herni (rina)         </p>
-                      <center>
-                              <div class="primary-button">
-                                <a href="http://harinfood.net/login?username=bjs529svfkfhaf523930123&password=bjs529svfkfhaf523930123">wifi gratis</a>
-                              </div>
-                      </center>
-                            </div>
-                          </div>
-                          <div class="col-md-5 right-image">
-                            <img src="right-about-image.jpg">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>     
+    <div id="app-container" style="display: none; margin-top: 25px;">
+        <header></header>
+        <div class="main-layout">
+            <!-- Produk -->
+            <section id="menu-produk-section">
+                
+                <div class="search-barcode-input">
+                    <input type="text" id="product-search-barcode" placeholder="Cari produk atau scan barcode..." autofocus>
+                    <span id="search-barcode-feedback" class="feedback-message"></span>
                 </div>
-              </div>
-            </li>
-
-            <li>
-              <div class="heading">
-                <h1>TENTANG KAMI</h1>
-                <span><b>USAHA KAMI DI BIDANG MAKANAN RINGAN DAN JARINGAN</b></span> 
-              </div>
-              <div class="cd-half-width second-slide">   
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="content second-content">
-                        <div class="row">
-                          <div class="col-md-7 left-image">
-                            <img src="left-about-image.jpg">
-                          </div>
-                          <div class="col-md-5">
-                            <div class="right-about-text">
-                              <h4></h4>
-                              <p> HARINF0OD
-Adalah kedai yang berdiri dari tahun 2018 dan produk yang di tawarkan adalah olahan cepat saji antara lain olahan seafood dan sosis
-baik bakar maupun goreng, serta ada juga gorengan risol dan cibay, di harinfood juga ada fasilitas wifi dengan kecepatan yang stabil. </p>
-                              <p>Apa produk yang kita miliki, kami memiliki beberapa produk antara lain di bidang makanan yaitu olahan seafood yang sudah di frozen sehingga cita rasa tidak jauh beda dengan yang baru dibikin serta ada cibay dan risol yang rasa sudah kami jaga dari tahun  ketahun</br>
-                              produk yang lain adalah fasilitas wifi yang cakupannya cukup luas dan ada beberapa paket yang kami jual yaitu paket 1 jam, paket 6 jam, paket 1 bulan, paket 1 bulan 3 user dan paket 1 bulan pro (7 user)</br>
-                              Mengapa kami berusaha membangun usaha di bidang makanan serta jaringan seperti ini</br>karena usaha seperti ini bila berjalan dengan lancar akan sangat membantu di bidang jarinan internet bagi warga sekitar dengan harga murah warga bisa menikmati layanan internet dengan puas, serta dibidang makanan yang bisa di bilang sesuai di lidah masyarakat karena resep yang kami padukan dengan rasa yang pernah ada jadi gak bakalan terlupakan hehehe </p>
-                            
-                  
-                              
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-7">
-                            <div class="left-about-text">
-                              
-                              <p></p>
-                             
-                            </div>
-                          </div>
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>                  
+                <div id="produk-list" class="produk-grid"></div>
+            </section>
+            <!-- Keranjang -->
+            <section id="keranjang-form-section">
+                <h2 class="section-title">Keranjang Belanja</h2>
+                <table class="keranjang-table">
+                    <thead>
+                        <tr>
+                            <th>Produk</th>
+                            <th>Qty</th>
+                            <th>Harga</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="keranjang-items">
+                        <tr><td colspan="4" class="empty-cart-message">Keranjang kosong.</td></tr>
+                    </tbody>
+                </table>
+                <p class="keranjang-total-display">Total: <span id="keranjang-total">Rp 0</span></p>
+                <div class="pembayaran-section-inline">
+                    <label for="nominal-pembayaran">Nominal Pembayaran:</label>
+                    <input type="number" id="nominal-pembayaran" min="0" value="0">
+                    <p>Kembalian: <span id="kembalian-display">Rp 0</span></p>
                 </div>
-              </div>
-            </li>
-
-            <li>
-              <div class="heading">
-                <h1><b>PRODUK</b></h1>
-                <span><b>produk kami antara lain</b></span> 
-              </div>
-              <div class="cd-half-width third-slide">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="content third-content">
-                        <div class="row">
-                          <div class="col-md-7 left-image">
-                            <img src="left-feature-image.png">
-                          </div>
-                          <div class="col-md-5">
-                            <div class="right-feature-text">
-                              <h4>Produk:</br> <em>MAKANAN</em></h4>
-                                </br>*risol
-                                </br>*cibay
-                                </br>*sosis kecil bakar
-                                </br>*sosis besar bakar
-                                </br>*chikua / cumi bakar
-                                </br>*baso bakar
-                                </br>*otak-otak bakar
-                                </br>* dumplin bakar
-                                </br>*kornet bakar
-                                </br>*udang bakar
-                                </br>*topoki
-                                </br>*dll
-                     
-                               <h4><em>JARINGAN</em></h4>
-                               
-                              <div class="feature-list">
-                                <ul>
-                                  </br> * wifi 1 jam 
-                                </br> * wifi 6 jam
-                                 </br> * wifi 1 bulan
-                                </br> * wifi 1 bulan 2 user
-                                </br> * wifi 1 bulan 3 user
-                                </ul>
-                              </div>
-                              <div class="primary-button">
-                                <a href="#">kembali ke atas</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>                  
+                <div class="diskon-section-inline" id="diskon-section" style="display:none;">
+                    <label for="nama-diskon">Nama Diskon:</label>
+                    <input type="text" id="nama-diskon" placeholder="Contoh: Promo Juli" value="">
+                    <label for="nilai-diskon">Nilai Diskon:</label>
+                    <input type="number" id="nilai-diskon" min="0" value="0">
                 </div>
-              </div>
-            </li>
-
-            <li>
-              <div class="heading">
-                <h1>GALLERY KAMI</h1>
-                <span>Photo dari sebagian dagangan kami</span> 
-              </div>
-              <div class="cd-half-width fourth-slide">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="content fourth-content">
-                        <div class="row">
-                          <div class="col-md-3 project-item">
-                            <a href="item-01.jpg" data-lightbox="image-1"><img src="project-item-01.jpg"></a>
-                          </div>
-                          <div class="col-md-3 project-item">
-                            <a href="item-02.jpg" data-lightbox="image-1"><img src="project-item-02.jpg"></a>
-                          </div>
-                          <div class="col-md-3 project-item">
-                            <a href="item-03.jpg" data-lightbox="image-1"><img src="project-item-03.jpg"></a>
-                          </div>
-                          <div class="col-md-3 project-item">
-                            <a href="item-04.jpg" data-lightbox="image-1"><img src="project-item-04.jpg"></a>
-                          </div>
-                          <div class="col-md-3 project-item">
-                            <a href="item-05.jpg" data-lightbox="image-1"><img src="project-item-05.jpg"></a>
-                          </div>
-                          <div class="col-md-3 project-item">
-                            <a href="item-06.jpg" data-lightbox="image-1"><img src="project-item-06.jpg"></a>
-                          </div>
-                          <div class="col-md-3 project-item">
-                            <a href="item-07.jpg" data-lightbox="image-1"><img src="project-item-07.jpg"></a>
-                          </div>
-                          <div class="col-md-3 project-item">
-                            <a href="item-08.jpg" data-lightbox="image-1"><img src="project-item-08.jpg"></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>                  
+                <div id="keterangan-section">
+                    <label for="keterangan-pesanan">Keterangan Pesanan (Opsional):</label>
+                    <textarea id="keterangan-pesanan" rows="2"></textarea>
                 </div>
-              </div>
-            </li>
-
-            <li>
-              <div class="heading">
-                <h1>KEDAI ONLINE HARINFOOD</h1>
-                <span><b>Ayo segera berbelanja di kedai kami</b></span> 
-              </div>
-              <div class="cd-half-width fivth-slide">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="content fivth-content">
-                        <div class="row">
-                          <div class="col-md-4">
-                            <div class="left-info">
-                              <p>Kedai mulai buka pada jam 16:00 WIB Sampai jam 21:30 WIB, bila anda menghubungi kami di luar jam kerja  kemungkinan akan di balas akan tetapi kami mohon maaf kalau kami slow respond, semoga harimu menyenangkan dan selamat berbelanja <br>hubungi kami melalui link di bawah
-                              <br><br>
-                   </p>
-          
-<center> <a href="https://api.whatsapp.com/send?phone=6281235368643&text=Nama%20:%0AAlamat%20:%0ASimpan%20 kontak %20saya %20di%20 HARINFOOD"><button style="background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
-          border: 1px solid #00c9ff;
-          border-radius:18px;
-          color: #464646;
-          font-weight: bold;
-          text-align: center;
-          vertical-align: middle;
-          text-decoration: none;
-          display: inline-block;
-          height: 55px;
-          width : 70%;"><b>WHATSAPP&nbsp;<img style="width:25px ; height:25px;" src="contact-icon.png"></b></button></a></center>
-                             
-                            </div>
-                          </div>
-                         
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>                  
+                <div id="payment-choice-buttons" class="payment-options"></div>
+                <button id="cetak-struk-button" class="btn-action btn-print-green" style="display: none; margin-top: 15px;"><i class="fas fa-print"></i> Cetak Struk</button>
+                <div class="pemesanan-container">
+                    <h2 class="section-title">Detail Pemesanan</h2>
+                    <label for="nama-pemesan">Nama Pemesan:</label>
+                    <input type="text" id="nama-pemesan">
+                    <label for="alamat-pemesan">Alamat Lengkap:</label>
+                    <textarea id="alamat-pemesan" rows="3"></textarea>
+                    <label id="pesan-info-label" style="color:white; font-size:10px;font-style: italic;">Silahkan memesan dengan menekan tombol di bawah !</label>
+                    <div class="action-buttons"></div>
                 </div>
-              </div>
-            </li>
-          </ul> <!-- .cd-hero-slider -->
-        </section> <!-- .cd-hero -->
-
-
+            </section>
+        </div>
         <footer>
-          <p>Copyright &copy; 2022 HARINFOOD</P>
+            <p>&copy; 2025 HARINFOOD. All Rights Reserved.</p>
         </footer>
-    
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="jquery-1.11.2.min.js"><\/script>')</script>
+        <div id="kasir-fabs" style="display: none;">
+            <div class="fab-button fab-print" id="print-fab" title="Cetak Struk">
+                <i class="fas fa-print"></i>
+                <span class="fab-label">F1</span>
+            </div>
+            <div class="fab-button fab-share" id="share-order-fab" title="Bagikan Transaksi">
+                <i class="fas fa-share-alt"></i>
+                <span class="fab-label">F2</span>
+            </div>
+            <div class="fab-button fab-manual" id="add-manual-order-fab" title="Tambah Pesanan Manual">
+                <i class="fas fa-shopping-basket"></i>
+                <span class="fab-label">F3</span>
+            </div>
+            <div class="fab-button fab-clear" id="clear-cart-fab" title="Bersihkan Keranjang">
+                <i class="fas fa-trash"></i>
+                <span class="fab-label">F4</span>
+            </div>
+            <div class="fab-button fab-cart" id="cart-fab" title="Keranjang Belanjaan">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="fab-label">F6</span>
+            </div>
+            <div class="fab-button fab-dapur" id="dapur-fab" title="Cetak Struk Dapur">
+                <i class="fas fa-utensils"></i>
+                <span class="fab-label">F12</span>
+            </div>
+        </div>
+        <button id="floating-pesan-whatsapp" class="fab-pesan-whatsapp">
+            <i class="fab fa-whatsapp" style="font-size: 24px;"></i> <span class="fab-pesan-text">TEKAN DISINI UNTUK MEMESAN</span>
+        </button>
+        <div id="manualOrderModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="manualOrderModal.style.display='none'">&times;</span>
+                <h2 class="modal-title">Tambah Pesanan Manual</h2>
+                <label for="manualProductName">Nama Produk:</label>
+                <input type="text" id="manualProductName" required>
+                <label for="manualProductPrice">Harga Satuan:</label>
+                <input type="number" id="manualProductPrice" min="0" required>
+                <label for="manualProductQty">Kuantitas:</label>
+                <input type="number" id="manualProductQty" min="1" value="1" required>
+                <button onclick="addManualOrderItem()">Tambahkan ke Keranjang</button>
+            </div>
+        </div>
+        <div id="dapurStrukModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="dapurStrukModal.style.display='none'">&times;</span>
+                <h2 class="modal-title">Struk Pelanggan</h2>
+                <label for="dapurBodyInput">Isi Pesanan/Keterangan untuk di cetak ulang:</label>
+                <textarea id="dapurBodyInput" rows="7" style="width:100%;"></textarea>
+                <button onclick="printDapurStruk()">Cetak Struk Pelanggan</button>
+            </div>
+        </div>
 
-        <script src="bootstrap.min.js"></script>
-        <script src="plugins.js"></script>
-        <script src="main.js"></script>
-
-    </body>
+        <!-- POPUP KERANJANG dengan pencarian barcode -->
+        <div id="popup-keranjang" style="display:none;">
+            <div class="popup-keranjang-content">
+                <button id="close-popup-keranjang" title="Tutup" style="position:absolute;right:10px;top:10px;font-size:1.5em;background:none;border:none;cursor:pointer;">&times;</button>
+                <h2 style="margin-top:0;margin-bottom:10px;"><i class="fas fa-shopping-cart"></i> Keranjang Belanjaan</h2>
+                <!-- Tambahan kotak pencarian barcode di popup -->
+                <div class="popup-search-barcode-input" style="margin-bottom: 10px;">
+                    <input type="text" id="popup-product-search-barcode" placeholder="Cari produk / scan barcode di sini..." autofocus>
+                    <span id="popup-search-barcode-feedback" class="feedback-message"></span>
+                </div>
+                <div style="max-height:240px;overflow:auto;">
+                    <table class="popup-keranjang-table" style="width:100%;border-collapse:collapse;">
+                   <thead>
+                     <tr>
+                        <th>Nama</th>
+                        <th>Harga</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                        <th>Hapus</th>
+                    </tr>
+                  </thead>
+                        <tbody id="popup-keranjang-items"></tbody>
+                    </table>
+                </div>
+                <div style="margin-top:10px;display:flex;align-items:center;gap:7px;">
+                    <strong>Total: <span id="popup-keranjang-total">Rp0</span></strong>
+                    <button id="popup-keranjang-mini-print" title="Cetak Struk" style="display:flex;align-items:center;justify-content:center;">
+                        <i class="fas fa-print"></i>
+                    </button>
+                </div>
+                <div class="pembayaran-section-inline" style="margin-top:10px;">
+                    <label for="popup-keranjang-nominal">Nominal Pembayaran:</label>
+                    <input type="number" id="popup-keranjang-nominal" min="0" value="0">
+                    <p>Kembalian: <span id="popup-kembalian-display">Rp0</span></p>
+                </div>
+                <!-- Nama dan alamat input akan dimasukkan lewat JS agar dinamis -->
+                <div style="margin-top:10px;text-align:right;">
+                    <button id="popup-keranjang-print" style="background:#007bff;color:#fff;border:none;padding:8px 16px;border-radius:5px;cursor:pointer;">
+                        <i class="fas fa-print"></i> Cetak Struk
+                    </button>
+                    <!-- Tombol Cetak untuk pelanggan (ditampilkan hanya untuk pelanggan) -->
+                    <button id="popup-keranjang-print-pelanggan" style="display:none;background:linear-gradient(45deg,#28a745,#1e7e34);color:#fff;border:none;padding:8px 16px;border-radius:25px;cursor:pointer;margin-left:8px;">
+                        <i class="fas fa-print"></i> Cetak Struk
+                    </button>
+                    <!-- Tombol WhatsApp akan dimasukkan lewat JS agar dinamis -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tambahkan elemen audio klik -->
+    <audio id="audio-click" src="click.mp3" preload="auto"></audio>
+    <audio id="audio-beep" src="beep.mp3" preload="auto"></audio>
+    <audio id="audio-ding" src="ding.mp3" preload="auto"></audio>
+    <audio id="audio-aaa" src="aaa.mp3" preload="auto"></audio>
+    <script src="script.js?v=81"></script>
+</body>
 </html>

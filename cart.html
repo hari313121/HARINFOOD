@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout Harinfood</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body{background:var(--primary-bg-color)}
+.full-cart{
+  max-width:900px;
+  margin:0 auto;
+  padding:20px;
+}
+.order-type{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  margin:15px 0;
+  font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<header class="section-title">CHECKOUT PESANAN</header>
+
+<div class="full-cart">
+  <div id="alamat-section">
+    <label>📍 Alamat Pelanggan</label>
+    <textarea id="alamat-pelanggan" rows="3"></textarea>
+    <small id="info-jarak"></small>
+  </div>
+
+  <div class="order-type">
+    <label><input type="radio" name="orderType" value="pickup" checked> Ambil Sendiri</label>
+    <label><input type="radio" name="orderType" value="delivery"> Delivery</label>
+  </div>
+
+  <table class="keranjang-table">
+    <thead>
+      <tr><th>Produk</th><th>Qty</th><th>Harga</th></tr>
+    </thead>
+    <tbody id="keranjang-items"></tbody>
+  </table>
+
+  <h3 id="total-belanja"></h3>
+
+  <button id="pesan-whatsapp-pelanggan" class="btn-whatsapp" style="width:100%">
+    KIRIM PESANAN KE WHATSAPP HARINFOOD
+  </button>
+</div>
+
+<script src="script.js"></script>
+<script>window.IS_CART_PAGE=true;</script>
+</body>
+</html>

@@ -1,0 +1,1378 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap');
+
+:root {
+    --primary-bg-color: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    /*--secondary-bg-color: rgba(255, 255, 255, 0.08);*/
+   /* --border-neon-color: #00f0ff;
+    --shadow-neon-color: rgba(0, 240, 255, 0.4);*/
+    --text-primary-color: #e0e0e0;
+    --text-accent-color: #00f0ff;
+    --text-price-color: #ffcc00;
+    --button-default-bg: linear-gradient(45deg, #00f0ff, #00b0ff);
+    --button-clear-bg: linear-gradient(45deg, #ff4d4d, #ff8c8c);
+    --button-whatsapp-bg: linear-gradient(45deg, #25D366, #128C7E);
+    --button-manual-bg: linear-gradient(45deg, #8a2be2, #4b0082);
+    --input-border-color: #00f0ff;
+    --input-bg: rgba(255, 255, 255, 0.1);
+    --table-header-bg: rgba(255, 255, 255, 0.1);
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+    --text-color: #e0e0e0;
+    --btn-qris-bg: linear-gradient(45deg, #007bff, #00b0ff);
+    --btn-tunai-bg: linear-gradient(45deg, #ffc107, #e0a800);
+    --btn-print-green-bg: linear-gradient(45deg, #28a745, #1e7e34);
+    --border-radius: 8px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: var(--primary-bg-color);
+    color: var(--text-primary-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+header {
+    background: transparent;
+    padding: 1em 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+footer {
+    text-align: center;
+    padding: 1.5em;
+    background: rgba(0, 0, 0, 0.5);
+    margin-top: auto;
+    color: var(--text-primary-color);
+    border-top: 3px solid var(--border-neon-color);
+    box-shadow: 0 -4px 15px var(--shadow-neon-color);
+}
+.main-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2em;
+    padding: 2em;
+    max-width: 1400px;
+    margin: 1em auto;
+    flex-grow: 1;
+    align-items: flex-start;
+}
+#menu-produk-section,
+#keranjang-form-section {
+    background: var(--secondary-bg-color);
+    border-radius: 15px;
+    padding: 1.5em;
+    box-shadow: 0 0 20px var(--shadow-neon-color);
+    /*border: 1px solid rgba(0, 240, 255, 0.3);*/
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+.section-title {
+    color: var(--text-accent-color);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0.1em;
+    font-size: 25px;
+}
+.popup-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 10000;
+    background-image: url('citung.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.popup-content {
+    background: radial-gradient(circle at top left, #1a1a2e, #16213e);
+    padding: 40px 50px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0, 240, 255, 0.4);
+    border: 3px solid var(--border-neon-color);
+    width: 90%;
+    max-width: 480px;
+    color: var(--text-primary-color);
+    position: relative;
+    overflow: hidden;
+}
+.popup-content::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: conic-gradient(transparent, rgba(0, 240, 255, 0.1), transparent);
+    animation: rotateGlow 15s linear infinite;
+    z-index: -1; opacity: 0.8;
+}
+@keyframes rotateGlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.login-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    color: var(--text-accent-color);
+    text-shadow: 0 0 20px var(--shadow-neon-color), 0 0 30px rgba(0, 240, 255, 0.7);
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, #00f0ff, #00b0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.button-group {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.login-choice-btn {
+    padding: 15px 35px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-choice-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); }
+.login-choice-btn::after {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0; transition: opacity 0.3s;
+}
+.login-choice-btn:hover::after { opacity: 1; }
+#btn-pelanggan { background: linear-gradient(45deg, #007bff, #0056b3); color: white; }
+#btn-pelanggan:hover { background: linear-gradient(45deg, #0056b3, #003d80); }
+#btn-kasir { background: linear-gradient(45deg, #28a745, #1e7e34); color: white; }
+#btn-kasir:hover { background: linear-gradient(45deg, #1e7e34, #155724); }
+.popup-content form {
+    display: flex; flex-direction: column; gap: 18px; margin-top: 20px;
+}
+.popup-content form label {
+    display: block; text-align: left; color: var(--text-accent-color); font-weight: 600; font-size: 1em; text-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
+}
+.popup-content form input[type="text"],
+.popup-content form input[type="password"] {
+    width: calc(100% - 28px);
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px solid var(--border-neon-color);
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text-primary-color);
+    font-size: 1.1em;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    caret-color: var(--text-accent-color);
+}
+.popup-content form input[type="text"]:focus,
+.popup-content form input[type="password"]:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 20px var(--shadow-neon-color), inset 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+.submit-login-btn {
+    background: linear-gradient(45deg, #6c757d, #5a6268);
+    color: white;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-top: 15px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.submit-login-btn:hover {
+    background: linear-gradient(45deg, #5a6268, #495057);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.5);
+}
+.payment-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1.5em;
+    justify-content: center;
+    padding-top: 1em;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-payment {
+    flex: 1 1 calc(50% - 10px);
+    max-width: 200px;
+    color: white;
+    border: none;
+    padding: 0.8em 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+}
+.btn-payment i { font-size: 1.2em; }
+.btn-payment:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.btn-tunai { background: var(--btn-tunai-bg); }
+.btn-tunai:hover { background: linear-gradient(45deg, #ffdc81, #fcc200); }
+.btn-qris { background: var(--btn-qris-bg); }
+.btn-qris:hover { background: linear-gradient(45deg, #00aaff, #007bff); }
+#pesan-whatsapp-pelanggan.btn-whatsapp {
+    background: var(--button-whatsapp-bg);
+    color: white;
+}
+#pesan-whatsapp-pelanggan.btn-whatsapp:hover {
+    background: linear-gradient(45deg, #128C7E, #25D366);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+.diskon-section-inline {
+    padding-top: 1em; margin-top: 1em; display: flex; flex-direction: column; gap: 0.5em;
+}
+.diskon-section-inline label { display: block; margin-bottom: 0.5em; color: var(--text-accent-color); }
+.diskon-section-inline input[type="number"], .diskon-section-inline input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--input-border-color);
+    background: var(--input-bg);
+    color: var(--text-primary-color);
+    font-size: 1em;
+    margin-bottom: 0.5em;
+}
+.diskon-section-inline input[type="number"]:focus, .diskon-section-inline input[type="text"]:focus {
+    outline: none;
+    border-color: var(--border-neon-color);
+    box-shadow: 0 0 10px var(--shadow-neon-color);
+}
+#keterangan-section {
+    padding-top: 1em; margin-top: 1em; border-top: 1px solid rgba(255, 255, 255, 0.2); display: flex; flex-direction: column; gap: 0.5em;
+}
+#keterangan-section label { display: block; margin-bottom: 0.5em; color: var(--text-accent-color); }
+#keterangan-section textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--input-border-color);
+    background: var(--input-bg);
+    color: var(--text-primary-color);
+    font-size: 1em;
+    resize: vertical;
+}
+#keterangan-section textarea:focus {
+    outline: none;
+    border-color: var(--border-neon-color);
+    box-shadow: 0 0 10px var(--shadow-neon-color);
+}
+.btn-action.btn-print-green {
+    background: var(--btn-print-green-bg);
+    color: white;
+}
+.btn-action.btn-print-green:hover {
+    background: linear-gradient(45deg, #218838, #155724);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+#produk-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5em;
+    align-content: start;
+    flex-grow: 1;
+}
+.produk-item {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 1em;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.produk-item:hover { transform: translateY(-5px); box-shadow: 0 8px 25px var(--shadow-neon-color); background: rgba(255, 255, 255, 0.15); }
+.produk-item img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1em;
+    border: 2px solid var(--border-neon-color);
+    background: #111;
+    display: block;
+    max-width: 100%;
+    min-height: 0;
+}
+.produk-item h3 { color: var(--text-accent-color); margin-bottom: 0.2em; font-size: 1em; font-weight: 600; white-space: normal; overflow-wrap: break-word; line-height: 1.2; }
+.produk-item p,
+.produk-item .edit-price-wrapper {
+    font-size: 0.83em !important;
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+    line-height: 1.1;
+}
+.produk-item .edit-price-wrapper {
+    gap: 3px;
+}
+.produk-item .product-price-input {
+    width: 58px !important;
+    font-size: 0.93em !important;
+    padding: 2px 6px !important;
+    height: 26px !important;
+    min-width: 0 !important;
+    margin-left: 2px;
+    margin-right: 0;
+    box-sizing: border-box;
+}
+@media (max-width: 600px) {
+    .produk-item p,
+    .produk-item .edit-price-wrapper {
+        font-size: 0.77em !important;
+    }
+    .produk-item .product-price-input {
+        width: 46px !important;
+        font-size: 0.87em !important;
+        height: 22px !important;
+        padding: 1px 4px !important;
+    }
+}
+.produk-item p { font-weight: bold; color: var(--text-price-color); margin-top: 0.2em; white-space: normal; overflow-wrap: break-word; line-height: 1.2; }
+.produk-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1em;
+    width: 100%;
+    min-height: 44px;
+}
+.qty-btn,
+.qty-control-btn {
+    background: var(--button-default-bg);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 2.6em;
+    height: 2.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 2px 8px var(--shadow-neon-color);
+    transition: background 0.2s, box-shadow 0.2s;
+    padding: 0;
+    min-width: 2.6em;
+    min-height: 2.6em;
+}
+.qty-btn:active,
+.qty-control-btn:active { background: var(--button-clear-bg); }
+.minus-btn { background: var(--button-clear-bg); }
+.minus-btn:hover { background: linear-gradient(45deg, #c0392b, #e74c3c); }
+.plus-btn { background: var(--button-default-bg); }
+.plus-btn:hover { background: linear-gradient(45deg, #00b0ff, #00f0ff); }
+.qty-value {
+    width: 2.3em;
+    min-width: 1.8em;
+    max-width: 2.5em;
+    text-align: center;
+    font-size: 1.1em;
+    color: var(--text-accent-color);
+    font-weight: bold;
+    background: transparent;
+    border: none;
+    outline: none;
+    pointer-events: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2px;
+}
+@media (min-width: 600px) and (max-width: 1024px) {
+    .produk-controls {
+        gap: 9px;
+        min-height: 40px;
+    }
+    .qty-btn,
+    .qty-control-btn {
+        width: 2.2em;
+        height: 2.2em;
+        font-size: 1.15em;
+        min-width: 2.2em;
+        min-height: 2.2em;
+    }
+    .qty-value {
+        width: 1.7em;
+        min-width: 1.3em;
+        font-size: 1em;
+    }
+}
+@media (max-width:600px) {
+    .produk-controls {
+        gap: 7px;
+        min-height: 34px;
+    }
+    .qty-btn,
+    .qty-control-btn {
+        width: 1.8em;
+        height: 1.8em;
+        font-size: 1em;
+        min-width: 1.8em;
+        min-height: 1.8em;
+    }
+    .qty-value {
+        width: 1.3em;
+        min-width: 1em;
+        font-size: 0.92em;
+    }
+}
+.keranjang-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.keranjang-table thead th {
+    background-color: var(--table-header-bg);
+    padding: 0.8em;
+    text-align: left;
+    color: var(--text-accent-color);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    font-size: 0.9em;
+    font-weight: 600;
+}
+#keranjang-items tr { border-bottom: 1px dotted rgba(255, 255, 255, 0.1);}
+#keranjang-items tr:last-child { border-bottom: none;}
+#keranjang-items td {
+    padding: 0.6em 0.5em;
+    vertical-align: middle;
+    font-size: 0.9em;
+    color: var(--text-primary-color);
+}
+#keranjang-items td:first-child { width: 50%; color: #fff; font-weight: bold;}
+#keranjang-items td:nth-child(2) { width: 15%; text-align: center;}
+#keranjang-items td:nth-child(3) { width: 25%; text-align: right; color: var(--text-price-color);}
+#keranjang-items td:last-child { width: 10%; text-align: right;}
+#keranjang-items td input[type="number"] {
+    width: 40px; padding: 3px; border-radius: 3px;
+    border: 1px solid var(--input-border-color);
+    background: var(--input-bg);
+    color: var(--text-primary-color);
+    font-size: 0.8em;
+    text-align: center;
+    -moz-appearance: textfield;
+}
+#keranjang-items td input[type="number"]::-webkit-outer-spin-button,
+#keranjang-items td input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+#keranjang-items td button {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 3px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.7em;
+    transition: background-color 0.2s, transform 0.2s;
+}
+#keranjang-items td button:hover { background-color: #d32f2f; transform: translateY(-1px);}
+.empty-cart-message { text-align: center; font-style: italic; color: rgba(255,255,255,0); padding: 1em;}
+.keranjang-total-display { font-size: 1.2em; font-weight: bold; margin-top: 0.5em; color: var(--text-accent-color); text-align: right;}
+#keranjang-total { color: var(--text-price-color);}
+.pembayaran-section-inline {
+    padding-top: 1em; margin-top: 1em; display: flex; flex-direction: column; gap: 0.5em;
+}
+.pembayaran-section-inline label { display: block; margin-bottom: 0.5em; color: var(--text-accent-color);}
+.pembayaran-section-inline input[type="number"] {
+    width: calc(100% - 20px); padding: 10px; border-radius: 5px; border: 1px solid var(--input-border-color); background: var(--input-bg); color: var(--text-primary-color); font-size: 1em; margin-bottom: 0.5em;
+}
+.pembayaran-section-inline input[type="number"]:focus { outline: none; border-color: var(--border-neon-color); box-shadow: 0 0 10px var(--shadow-neon-color);}
+.pembayaran-section-inline p { font-size: 1.1em; font-weight: bold; color: var(--text-accent-color); text-align: right; margin-top: 0.5em;}
+#kembalian-display { color: var(--text-price-color);}
+.pemesanan-container {
+    padding-top: 1.5em; border-top: 1px solid rgba(255,255,255,0); margin-top: 1em;
+}
+.pemesanan-container .section-title { font-size: 1.5em; margin-bottom: 1em; text-align: center;}
+.pemesanan-container label { display: block; margin-bottom: 0.5em; color: var(--text-accent-color);}
+.pemesanan-container input[type="text"],
+.pemesanan-container textarea {
+    margin-bottom: 1em; width: calc(100% - 20px); padding: 10px; border-radius: 5px; border: 1px solid var(--input-border-color); background: var(--input-bg); color: var(--text-primary-color); font-size: 1em; resize: vertical;
+}
+.pemesanan-container input[type="text"]:focus,
+.pemesanan-container textarea:focus { outline: none; border-color: var(--border-neon-color); box-shadow: 0 0 10px var(--shadow-neon-color);}
+.action-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.5em;}
+.action-buttons .btn-whatsapp { flex: 1 1 100%; background: var(--button-whatsapp-bg);}
+.action-buttons .btn-whatsapp:hover { background: linear-gradient(45deg, #1da851, #25D366); transform: translateY(-2px);}
+.btn-action {
+    color: white;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 3px 10px rgba(255, 77, 77, 0.4);
+    width: 100%;
+    margin-top: 0.5em;
+}
+.fab-pesan-whatsapp {
+    position: fixed;
+    right: 100px;
+    left: 100px;
+    bottom: 10px;
+    z-index: 10010;
+    background: var(--button-whatsapp-bg);
+    color: #fff;
+    border: none;
+    border-radius: 32px;
+    box-shadow: 0 4px 16px rgba(255,255,255,0);
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0.8em 1.6em 0.8em 1.2em;
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
+    opacity: 0;
+    pointer-events: none;
+}
+.fab-pesan-whatsapp i {
+    font-size: 1.5em;
+    margin: 0.4em;
+}
+.fab-pesan-whatsapp .fab-pesan-text {
+    font-size: 1.08em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.fab-pesan-whatsapp:hover {
+    background: linear-gradient(45deg, #128C7E, #25D366);
+    box-shadow: 0 8px 30px rgb(255,255,255);
+    transform: scale(1.06) translateY(-2px);
+}
+@media (max-width: 600px) {
+    .fab-pesan-whatsapp {
+        right: 9px;
+        bottom: 9px;
+        font-size: 1em;
+        padding: 0.5em 1.2em 0.5em 0.9em;
+        border-radius: 24px;
+    }
+    .fab-pesan-whatsapp i { font-size: 1.2em; }
+}
+#kasir-fabs {
+    pointer-events: none;
+    z-index: 1001;
+}
+#kasir-fabs .fab-button {
+    pointer-events: auto;
+    position: fixed;
+    right: 12px;
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+    color: #fff;
+    z-index: 1002;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.2s;
+}
+#kasir-fabs .fab-share   { bottom: calc(12px + 3*56px); background: linear-gradient(45deg, #3ec0f2, #3ec0f2);}
+#kasir-fabs .fab-dapur   { bottom: calc(12px + 5*56px); background: linear-gradient(45deg, #000000, #000000);}
+#kasir-fabs .fab-print   { bottom: calc(12px + 4*56px); background: linear-gradient(45deg, #211ae5, #211ae5);}
+#kasir-fabs .fab-manual  { bottom: calc(12px + 2*56px); background: linear-gradient(45deg, #4b0082, #4b0082);}
+#kasir-fabs .fab-cart    { bottom: calc(12px + 1*56px); background: linear-gradient(45deg, #ff9800, #ff9800);}
+#kasir-fabs .fab-clear   { bottom: 12px;                background: linear-gradient(45deg, #de0909, #de0909);}
+#kasir-fabs .fab-button:not(:last-child) { margin-bottom: 8px; }
+#kasir-fabs .fab-button:hover { 
+    transform: scale(1.12) translateY(-2px); 
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+@media (max-width: 480px) {
+    #kasir-fabs .fab-button {
+        right: 5px;
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+    }
+    #kasir-fabs .fab-share   { bottom: calc(5px + 3*46px);}
+    #kasir-fabs .fab-dapur   { bottom: calc(5px + 5*46px);}
+    #kasir-fabs .fab-print   { bottom: calc(5px + 4*46px);}
+    #kasir-fabs .fab-manual  { bottom: calc(5px + 2*46px);}
+    #kasir-fabs .fab-cart    { bottom: calc(5px + 1*46px);}
+    #kasir-fabs .fab-clear   { bottom: 5px;}
+}
+.fab-button i { pointer-events: none; }
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); justify-content: center; align-items: center;}
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    color: #333;
+    transition: all 0.3s ease;
+}
+.close-button {
+    color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer;
+}
+.close-button:hover, .close-button:focus { color: #000; text-decoration: none; }
+.modal-content label { display: block; margin-bottom: 8px; font-weight: 600; color: #333;}
+.modal-content input[type="number"], .modal-content input[type="text"] {
+    width: calc(100% - 20px); padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; font-size: 1em; background-color: white; color: #333;
+}
+.modal-content button {
+    background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; transition: background-color 0.2s;
+}
+.modal-content button:hover { background-color: #218838; }
+.search-barcode-input { margin-bottom: 0.1em; margin-right:5px; margin-left:20px; text-align: center;}
+.search-barcode-input input {
+    width: calc(100% - 20px); padding: 12px 10px; border: 1px solid var(--input-border-color); border-radius: var(--border-radius); background: var(--input-bg); color: var(--text-primary-color); font-size: 1em; box-sizing: border-box; margin-bottom: 5px;
+}
+.search-barcode-input input:focus { border-color: var(--border-neon-color); outline: none; box-shadow: 0 0 10px var(--shadow-neon-color);}
+.feedback-message { display: block; font-size: 0.85em; min-height: 1.2em; text-align: center;}
+.feedback-message.success-color { color: var(--success-color);}
+.feedback-message.danger-color { color: var(--danger-color);}
+@media (max-width: 1024px) {
+    .main-layout { grid-template-columns: 2fr 1fr; gap: 1em;}
+    #produk-list { grid-template-columns: repeat(3, 1fr);}
+}
+@media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+    .main-layout {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1em;
+        padding: 1em;
+        max-width: 100vw;
+        margin: 0 auto;
+        align-items: flex-start;
+    }
+    #produk-list {
+        grid-template-columns: repeat(3, 1fr); /* Ubah dari 2 ke 3 */
+        gap: 1.2em;
+    }
+    #menu-produk-section, #keranjang-form-section {
+        padding: 0.8em;
+        margin-bottom: 1em;
+    }
+    .section-title { font-size: 1.6em;}
+    .fab-button { width: 48px; height: 48px; font-size: 1.2em;}
+}
+@media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+    .main-layout {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1em;
+        padding: 1em;
+        max-width: 100vw;
+        margin: 0 auto;
+        align-items: flex-start;
+    }
+    #produk-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1em;
+    }
+    #menu-produk-section, #keranjang-form-section {
+        padding: 0.8em;
+        margin-bottom: 1em;
+    }
+    .section-title { font-size: 1.6em;}
+    .fab-button { width: 48px; height: 48px; font-size: 1.2em;}
+}
+@media (max-width: 600px) {
+    .main-layout {
+        display: block;
+        padding: 0.5em;
+        max-width: 100vw;
+        margin: 0 auto;
+    }
+    #produk-list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8em;
+    }
+    #menu-produk-section {
+        margin-bottom: 1em;
+    }
+    #keranjang-form-section {
+        margin-top: 1em;
+    }
+    .section-title { font-size: 1.1em;}
+    .fab-button { width: 36px; height: 36px; font-size: 0.8em;}
+    #keranjang-form-section {
+        margin-top: 1em;
+    }
+}
+@media print {
+.print-header { text-align: center !important; margin-bottom: 1px !important; border-bottom: 1px dashed #000 !important; padding-bottom: 2px !important; font-size: 1.25em !important; font-weight: bold !important; line-height: 1.05 !important; }
+    .print-header .shop-name-print, .print-header .shop-address-print, .print-header .shop-phone-print { font-size: 1.05em !important; font-weight: bold !important; margin: 0 !important; line-height: 1.05 !important; padding: 0 !important;}
+    html, body { height: auto !important; max-height: none !important; overflow: visible !important; margin: 0 !important; padding: 0 !important;}
+    body * { visibility: hidden !important; box-shadow: none !important; background: none !important; margin: 0 !important; padding: 0 !important;}
+    #print-area, #print-area * { visibility: visible !important; color: #000 !important; background: none !important; font-family: 'Arial', 'Poppins', sans-serif !important; font-size: 15px !important; line-height: 1.35 !important; font-weight: normal !important; letter-spacing: 0.03em !important;}
+    #print-area { position: absolute !important; left: 0 !important; top: 0 !important; width: 58mm !important; min-width: 58mm !important; max-width: 58mm !important; padding: 2mm 2mm 0 2mm !important; background: #fff !important; margin: 0 !important; min-height: 0 !important; max-height: none !important; height: auto !important; page-break-after: avoid !important; page-break-before: avoid !important; page-break-inside: avoid !important; break-after: avoid-page !important; break-before: avoid-page !important; break-inside: avoid-page !important;}
+    .print-header { text-align: center !important; margin-bottom: 3px !important; border-bottom: 1px dashed #000 !important; padding-bottom: 3px !important; font-size: 1.25em !important; font-weight: bold !important;}
+    .print-header .shop-name-print { font-size: 1.3em !important; font-weight: bold !important; letter-spacing: 1px !important;}
+    .print-header .shop-address-print, .print-header .shop-phone-print { font-size: 1em !important; font-weight: bold !important;}
+    .print-info p { margin: 0 !important; font-size: 1em !important; font-weight: bold !important;}
+    .print-notes { margin-top: 5px !important; margin-bottom: 8px !important; font-size: 1em !important; font-weight: normal !important; padding-top: 5px !important;}
+    hr { border: none !important; border-bottom: 1.5px dashed #000 !important; height: 0 !important; margin: 5px 0 !important;}
+    table { width: 100% !important; border-collapse: collapse !important; font-size: 1em !important; font-weight: normal !important;}
+    table thead { display: none !important;}
+    table tr { page-break-inside: avoid !important;}
+    table td { padding: 2px 0 !important; font-size: 1em !important; vertical-align: top !important; font-weight: normal !important;}
+    table td:nth-child(1) { width: 60% !important; text-align: left !important; font-weight: normal !important; word-break: break-word !important;}
+    table td:nth-child(2) { width: 40% !important; text-align: right !important; font-weight: normal !important;}
+    .total-row { font-size: 1.15em !important; font-weight: norml !important; text-align: right !important; margin-top: 5px !important; border-top: 1.5px solid #000 !important; padding-top: 5px !important;}
+    .total-row span { float: left !important; font-weight: normal !important;}
+    .print-payment-info { font-size: 1em !important; font-weight: normal !important; text-align: right !important; margin: 2px 0 !important;}
+    .print-payment-info span { float: left !important; font-weight: bold !important;}
+    .thank-you { text-align: center !important; margin-top: 8px !important; font-size: 1em !important; font-style: italic !important; font-weight: bold !important;}
+    #print-area img { display: block !important; margin: 0 auto 4px auto !important; max-width: 40mm !important; height: auto !important;}
+}
+#popup-keranjang {
+    display:none;
+    position:fixed;z-index:99999;left:0;top:0;width:100vw;height:100vh;
+    background:rgba(0,0,0,0.25);
+    justify-content:center;align-items:center;
+}
+#popup-keranjang .popup-keranjang-content {
+    background: #fff;
+    min-width: 320px;
+    max-width: 98vw;
+    padding: 24px 20px 18px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 36px #0002;
+    position: relative;
+    font-size: 1em;
+    color: #222;
+}
+#popup-keranjang .popup-keranjang-table th,
+#popup-keranjang .popup-keranjang-table td {
+    color: #222 !important;
+}
+#popup-keranjang .popup-keranjang-table tr td[colspan="4"] {
+    color: #222 !important;
+    font-weight: 500;
+}
+#popup-keranjang .popup-keranjang-content > div[style*="max-height"] {
+    max-height: 340px !important;
+    overflow-y: auto !important;
+    border: 1px solid #eee;
+    background: #fafafa;
+    border-radius: 8px;
+}
+
+/* Sticky footer for both WhatsApp and Print buttons */
+#popup-keranjang .popup-sticky-footer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+    box-shadow: 0 -2px 12px #0001;
+}
+
+/* Hide kasir print button for pelanggan */
+body[data-role="pelanggan"] #popup-keranjang-print {
+    display: none !important;
+}
+#popup-keranjang-whatsapp {
+    background: linear-gradient(45deg, #25D366, #128C7E);
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.08em;
+    margin-top: 10px;
+    width: 100%;
+    font-weight: bold;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+#popup-keranjang-whatsapp:hover {
+    background: linear-gradient(45deg, #128C7E, #25D366);
+    box-shadow: 0 4px 18px #25D36644;
+}
+
+/*======= CUSTOM POPUP KERANJANG EDIT =======*/
+
+/* Jarak baris total dan nominal pembayaran popup keranjang lebih dekat */
+#popup-keranjang-total,
+#popup-keranjang-nominal {
+    margin-top: 0.2em !important;
+    margin-bottom: 0.2em !important;
+}
+
+/* Label Nominal Pembayaran warna #00f0ff dan menempel input */
+#popup-keranjang .pembayaran-section-inline label {
+    display: block;
+    margin-bottom: -6px;
+    color: #00f0ff !important;
+    font-weight: 700;
+    font-size: 1em;
+    letter-spacing: 0.03em;
+    padding-left: 2px;
+    padding-bottom: 0;
+}
+
+#popup-keranjang .pembayaran-section-inline input[type="number"] {
+    width: calc(100% - 10px);
+    padding: 10px 8px;
+    border-radius: 5px;
+    border: 2px solid #00f0ff;
+    background: var(--input-bg, #f8f8f8);
+    color: #222;
+    font-size: 1.05em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+#popup-keranjang .pembayaran-section-inline input[type="number"]:focus {
+    outline: none;
+    border-color: #00f0ff;
+    box-shadow: 0 0 10px var(--shadow-neon-color, #00f0ff44);
+}
+
+/* Hilangkan tulisan kembalian di popup keranjang */
+#popup-keranjang .pembayaran-section-inline p,
+#popup-kembalian-display {
+    display: none !important;
+}
+
+/*===========================================*/
+
+/* Tambahkan di akhir file style.css */
+
+#kembalian-modal {
+    display: none;
+    position: fixed;
+    z-index: 100011;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.54);
+    justify-content: center;
+    align-items: center;
+}
+.kembalian-modal-content {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 40px #28a74533;
+    padding: 38px 32px 28px 32px;
+    min-width: 300px;
+    max-width: 94vw;
+    position: relative;
+    text-align: center;
+    animation: popKembalian 0.25s cubic-bezier(.18,.89,.32,1.28);
+}
+@keyframes popKembalian {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+#kembalian-modal-value {
+    font-size: 2.8em;
+    font-weight: bold;
+}
+#popup-kembalian-informasi {
+    margin-left: 8px;
+    font-weight: bold;
+    color: #ff9800;
+    font-size: 1em;
+    vertical-align: middle;
+}
+/* Tambahkan/ubah kode berikut di akhir file style.css */
+
+/* FAB WhatsApp dan FAB Hapus Keranjang posisi kiri bawah */
+.fab-pesan-whatsapp {
+    /* Override: dari kanan ke kiri bawah */
+    left: 5px !important;
+    right: auto !important;
+    bottom: 10px !important;
+}
+
+@media (max-width: 600px) {
+    .fab-pesan-whatsapp {
+        left: 5px !important;
+        right: auto !important;
+        bottom: 9px !important;
+    }
+}
+
+/* FAB pelanggan hapus keranjang (custom FAB) kiri bawah */
+#pelanggan-fab-clear-cart {
+    left: 5px !important;
+    right: auto !important;
+    /* Atur bottom di bawah tombol WhatsApp dengan jarak 2px */
+}
+/* Tambahkan/ubah kode di bawah ini di akhir style.css agar tombol WhatsApp di ponsel rata kiri & tulisan kiri */
+
+@media (max-width: 600px) {
+    .fab-pesan-whatsapp {
+        left: 5px !important;
+        right: auto !important;
+        bottom: 9px !important;
+        justify-content: flex-start !important;   /* agar konten tombol rata kiri */
+        text-align: left !important;              /* tulisan dalam tombol rata kiri */
+    }
+    .fab-pesan-whatsapp .fab-pesan-text {
+        text-align: left !important;
+        margin-left: 0 !important;
+    }
+}
+.fab-button {
+    position: relative;
+}
+.fab-label {
+    position: absolute;
+    bottom: 3px;
+    right: 6px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    font-size: 0.68em;
+    padding: 1.5px 5px;
+    border-radius: 6px;
+    font-weight: 700;
+    pointer-events: none;
+    letter-spacing: 0.5px;
+    box-shadow: 0 1px 6px #0004;
+    z-index: 2;
+}
+@media (max-width: 480px) {
+    .fab-label {
+        font-size: 0.57em;
+        bottom: 2px;
+        right: 4px;
+        padding: 1px 4px;
+    }
+}
+.produk-item {
+    cursor: pointer;
+}
+.produk-controls button {
+    cursor: pointer;
+}
+.product-price-input {
+    cursor: text !important;
+}
+/* Tambahan style tombol cetak struk mini di popup keranjang pelanggan */
+#popup-keranjang-mini-print {
+    background: linear-gradient(45deg, ##000000, ##000000);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px #28a74544;
+    margin-right: 6px;
+    transition: background 0.18s, transform 0.18s;
+}
+#popup-keranjang-mini-print:hover {
+    background: linear-gradient(45deg, ##000000, #155724);
+    transform: scale(1.08);
+    box-shadow: 0 4px 18px ##000000
+    ;
+}
+/* Selalu 4 kolom untuk produk grid pada layar >= 600px */
+#produk-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5em;
+    align-content: start;
+    flex-grow: 1;
+}
+
+/* 2 kolom untuk layar kecil (HP) */
+@media (max-width: 599px) {
+    #produk-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8em;
+    }
+}
+
+/* Layout jadi satu kolom untuk semua ukuran layar, keranjang di bawah produk */
+.main-layout {
+    display: block !important;
+    padding: 2em;
+    max-width: 1400px;
+    margin: 1em auto;
+}
+
+/* Tambahan: beri jarak keranjang di bawah produk */
+#keranjang-form-section {
+    margin-top: 2em;
+}
+#produk-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* atau 3, jika di desktop */
+    gap: 5px !important;         /* Jarak antar produk 5px atas, bawah, kanan, kiri */
+    padding: 5px !important;     /* Jarak ke tepi kiri-kanan juga 5px */
+    box-sizing: border-box;
+    margin: 0 !important;
+}
+
+@media (min-width: 601px) {
+    #produk-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Hilangkan padding/margin horizontal pada parent section agar tidak menambah jarak ke tepi */
+#menu-produk-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Hapus margin dari produk-item supaya benar-benar jaraknya dikontrol oleh gap grid */
+
+/* Pastikan produk-item tidak ada padding horizontal */
+.produk-item {
+    padding: 0 !important;
+    border-radius: 10px !important; /* pastikan radius sama, bisa sesuaikan 10px */
+    overflow: hidden;               /* gambar tidak keluar dari border-radius */
+    margin: 0 !important;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Gambar produk mengisi seluruh kolom, radius sama dengan parent */
+.produk-item img {
+    width: 100% !important;
+    height: auto;
+    display: block;
+    aspect-ratio: 1/1;       /* tetap persegi */
+    object-fit: cover;
+    border-radius: 0 !important;   /* jangan ada radius di img, biar ikut parent */
+    margin: 0 !important;
+    background: #111;
+}
+/* Tarik seluruh isi ke atas dengan jarak 25px dari batas layar */
+body,
+#app-container,
+.main-layout,
+#menu-produk-section {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#menu-produk-section {
+    padding-top: 10px !important;
+}
+
+.section-title {
+    margin-top: 0 !important;
+    margin-bottom: 0.7em !important;
+}
+/* Animasi glow nyala-mati untuk kedua tombol */
+@keyframes smallGlowPulse {
+    0% {
+        box-shadow: 0 0 3px 1px #00f0ff88;
+    }
+    50% {
+        box-shadow: 0 0 3px 3px #00f0ff;
+    }
+    100% {
+        box-shadow: 0 0 3px 1px #00f0ff88;
+    }
+}
+
+/* Tombol Hapus Keranjang Pelanggan */
+#pelanggan-fab-clear-cart {
+    animation: smallGlowPulse 1.2s infinite;
+    /* Jika sudah ada box-shadow lain, bisa tambahkan dengan koma */
+    /* box-shadow: 0 0 2px 2px #00f0ff, 0 4px 16px rgba(255,77,77,0.22); */
+    z-index: 10012;
+    /* properti lain tetap seperti sebelumnya */
+}
+
+/* Tombol "TEKAN DISINI UNTUK MEMESAN" */
+.fab-pesan-whatsapp {
+    animation: smallGlowPulse 1.2s infinite;
+    /* box-shadow: 0 0 2px 2px #00f0ff, 0 4px 16px rgba(255,255,255,0); */
+    z-index: 10010;
+}
+#popup-keranjang-mini-print {
+    background: linear-gradient(45deg, #000000, #000000);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px #28a74544;
+    margin-right: 6px;
+    transition: background 0.18s, transform 0.18s;
+}
+#popup-keranjang-mini-print:hover {
+    background: linear-gradient(45deg, #333, #155724);
+    transform: scale(1.08);
+    box-shadow: 0 4px 18px #000000;
+}
+#popup-keranjang-mini-print {
+    background: linear-gradient(45deg, #000000, #000000);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px #28a74544;
+    margin-right: 6px;
+    transition: background 0.18s, transform 0.18s;
+}
+#popup-keranjang-mini-print:hover {
+    background: linear-gradient(45deg, #333, #155724);
+    transform: scale(1.08);
+    box-shadow: 0 4px 18px #000000;
+}#popup-keranjang-mini-print {
+    background: linear-gradient(45deg, #000000, #000000);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px #28a74544;
+    margin-right: 6px;
+    transition: background 0.18s, transform 0.18s;
+}
+#popup-keranjang-mini-print:hover {
+    background: linear-gradient(45deg, #333, #155724);
+    transform: scale(1.08);
+    box-shadow: 0 4px 18px #000000;
+}
+/* ... CSS di atas ... */
+
+/* Default (tablet ke atas) */
+#produk-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom desktop/tablet */
+    gap: 5px !important;
+    align-content: start;
+    flex-grow: 1;
+    padding: 5px !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+}
+
+/* 2 kolom untuk layar kecil (HP) */
+@media (max-width: 599px) {
+    #produk-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8em;
+    }
+}
+/* Tambahkan style berikut di akhir file style.css */
+
+.popup-search-barcode-input {
+    margin-bottom: 10px;
+    text-align: center;
+}
+.popup-search-barcode-input input[type="text"] {
+    width: 96%;
+    max-width: 340px;
+    padding: 10px 12px;
+    border: 2px solid #00f0ff;
+    border-radius: 8px;
+    font-size: 1em;
+    background: #fafbfb;
+    color: #222;
+    outline: none;
+    margin-bottom: 2px;
+    box-sizing: border-box;
+}
+.popup-search-barcode-input input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px #00f0ff99;
+}
+.popup-search-barcode-input .feedback-message {
+    display: block;
+    font-size: 0.95em;
+    margin-top: 2px;
+}
+#popup-keranjang .popup-keranjang-table input[type="number"] {
+    padding: 4px 7px;
+    border: 1px solid #00f0ff;
+    border-radius: 5px;
+    font-size: 0.98em;
+    background: #f8f8f8;
+    color: #222;
+    box-sizing: border-box;
+    margin: 0 2px;
+}
+#popup-keranjang .popup-keranjang-table input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px #00f0ff44;
+}
+
+/* === ULTIMATE STOK KOSONG === */
+.produk-item.stok-habis{
+  filter: grayscale(100%) !important;
+  opacity: .45 !important;
+  pointer-events: none !important;
+}
+.badge-stok-kosong{
+  background:#b00020;
+  color:#fff;
+  padding:4px 8px;
+  border-radius:6px;
+  font-size:.75em;
+  margin-top:6px;
+  display:inline-block;
+}
+
+
+/* ===== TABLET & DESKTOP SPLIT (SAFE APPEND) ===== */
+@media (min-width: 768px) {
+  .main-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    height: calc(100vh - 56px);
+  }
+  #menu-produk-section {
+    width: 65% !important;
+    overflow-y: auto !important;
+  }
+  #keranjang-form-section {
+    width: 35% !important;
+    overflow-y: auto !important;
+    border-left: 2px solid rgba(255,255,255,0.1);
+  }
+  .btn-whatsapp,
+  .hapus-keranjang,
+  button {
+    font-size: 14px !important;
+    padding: 10px !important;
+  }
+}
+
+
+/* ===== FINAL SLIM HEADER ===== */
+#global-header{
+  width:100%;
+  background:#120F2E;
+  position:sticky;
+  top:0;
+  z-index:999;
+  border-bottom:1px solid rgba(255,255,255,0.15);
+}
+#global-header .header-inner{
+  max-width:1400px;
+  margin:0 auto;
+  padding:8px 10px 6px;
+  text-align:center;
+}
+#global-header .section-title{
+  margin:0;
+  font-size:22px;
+}
+
+/* hide original floating kasir but keep DOM */
+#kasir-fabs{
+  display:none !important;
+}
+
+/* header kasir bar */
+.kasir-header-bar{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:6px;
+  flex-wrap:wrap;
+}
+.kasir-header-btn{
+  background:#1e1e3f;
+  color:#fff;
+  border-radius:10px;
+  padding:6px 10px;
+  font-size:12px;
+  min-width:64px;
+  cursor:pointer;
+  text-align:center;
+}
+.kasir-header-btn span{
+  display:block;
+  font-size:10px;
+  opacity:.85;
+}
+
+/* layout unchanged */
+@media (min-width:768px){
+  #produk-list{
+    grid-template-columns:repeat(4,1fr) !important;
+    max-height:calc(100vh - 200px);
+    overflow-y:auto;
+  }
+  #keranjang-form-section{
+    position:sticky;
+    top:120px;
+    max-height:calc(100vh - 160px);
+    overflow-y:auto;
+  }
+}
+/* ===== END FINAL ===== */
